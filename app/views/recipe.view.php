@@ -1,68 +1,20 @@
 <?php
 require_once "shared/mainLayout.php";
 require_once "shared/main.php";
-$recipe = (object) [
-    'id' => 1,
-    'video' => '',
-    'title' => 'Recipe Title1',
-    'description' => 'Recipe description : Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nihil doloremque pariatur. Aperiam sit facilis quisquam deleniti fugiat nemo explicabo?',
-    'image' => 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVjaXBlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60',
-    'category' => 1
-];
-$ingList = array(
-    (object) [
-        'id' => 1,
-        'title' => 'e1',
-        'quantity' => 200,
-        'unit' => 'g',
-
-    ],
-    (object) [
-        'id' => 1,
-        'title' => 'e2',
-        'quantity' => 200,
-        'unit' => 'g',
-
-    ],
-    (object) [
-        'id' => 1,
-        'title' => 'e3',
-        'quantity' => 200,
-        'unit' => 'g',
-
-    ],
 
 
-);
-$intList = array(
-    (object) [
-        'id' => 1,
-        'description' => 'wwww',
-    ],
-    (object) [
-        'id' => 1,
-        'description' => 'wwww',
-    ],
-    (object) [
-        'id' => 1,
-        'description' => 'wwww',
-    ],
-
-
-);
 class RecipeView
 {
     private $recipe;
     private $ingredients;
     private $steps;
-    public function __construct($r, $i, $s)
+    public function __construct($data)
     {
-
-        $this->recipe = $r;
-        $this->ingredients = $i;
-        $this->steps = $s;
+        $this->recipe = $data['recipe'];
+        $this->ingredients = $data['ingredients'];
+        $this->steps = $data['steps'];
     }
-    public function displayRecipePage()
+    public function display()
     {
 
         $main = new MainLayout();
@@ -83,7 +35,7 @@ class RecipeView
                     <div class="recipe-title">
                         <div class="title-actions">
 
-                            <h1><?php echo $recipe->title ?></h1>
+                            <h1><?php echo $recipe->titre ?></h1>
                             <div class="actions">
                                 <div class="like-action">
                                     <i class="fas fa-heart"></i>
@@ -93,11 +45,19 @@ class RecipeView
                         </div>
                         <div class="notation">
                             <div class="stars display-only">
-                                <i class="fas fa-star checked"></i>
-                                <i class="fas fa-star checked"></i>
-                                <i class="fas fa-star checked"></i>
-                                <i class="fas fa-star checked"></i>
-                                <i class="fas fa-star checked"></i>
+
+                                <?php
+                                $i = 0;
+                                for ($i; $i < $recipe->notation; $i++) {
+                                    echo '<i class="fas fa-star checked"></i>';
+                                }
+                                if ($i < 5) {
+                                    for ($i; $i < 5; $i++) {
+                                        echo '<i class="fas fa-star"></i>';
+                                    }
+                                }
+                                ?>
+
                             </div>
 
                         </div>
@@ -113,7 +73,7 @@ class RecipeView
                                 <i class="fa-regular fa-clock"></i>
                                 <p>T. PREPARATION</p>
                             </div>
-                            <p>30 MIN</p>
+                            <p><?php echo $recipe->temps_preparation ?> MIN</p>
                         </div>
                         <div class="separator"></div>
                         <div class="detail-container">
@@ -121,7 +81,7 @@ class RecipeView
                                 <i class="fa-regular fa-clock"></i>
                                 <p>T. CUISSANT</p>
                             </div>
-                            <p>30 MIN</p>
+                            <p><?php echo $recipe->temps_cuisson ?> MIN</p>
                         </div>
                         <div class="separator"></div>
 
@@ -130,7 +90,7 @@ class RecipeView
                                 <i class="fa-regular fa-clock"></i>
                                 <p>T. REPOS</p>
                             </div>
-                            <p>30 MIN</p>
+                            <p><?php echo $recipe->temps_repos ?> MIN</p>
                         </div>
                         <div class="separator"></div>
 
@@ -139,7 +99,7 @@ class RecipeView
                                 <i class="fa-regular fa-clock"></i>
                                 <p>T. TOTAL</p>
                             </div>
-                            <p>30 MIN</p>
+                            <p><?php echo $recipe->temps_repos + $recipe->temps_cuisson + $recipe->temps_preparation ?> MIN</p>
                         </div>
                         <div class="separator"></div>
 
@@ -148,25 +108,19 @@ class RecipeView
                                 <i class="fa-brands fa-gripfire"></i>
                                 <p>NB. CALORIES</p>
                             </div>
-                            <p>30 </p>
+                            <p><?php echo $recipe->calories ?> </p>
                         </div>
                         <div class="separator"></div>
 
-                        <div class="detail-container">
-                            <div class="d-h">
-                                <i class="fa-solid fa-users"></i>
-                                <p>NB. PERSONNES</p>
-                            </div>
-                            <p>30 </p>
-                        </div>
-                        <div class="separator"></div>
+
+
 
                         <div class="detail-container">
                             <div class="d-h">
                                 <i class="fa-regular fa-circle-up"></i>
                                 <p>DIFFICULTÉ</p>
                             </div>
-                            <p>30 </p>
+                            <p><?php echo $recipe->difficulte ?> / 5 </p>
                         </div>
 
                     </div>
@@ -290,16 +244,9 @@ class RecipeView
         $ingList = $this->ingredients;
         $intList = $this->steps;
 
-        $main->displayLayout($this->recipe->title, function () use ($recipe, $ingList, $intList) {
+        $main->displayLayout($recipe->titre, function () use ($recipe, $ingList, $intList) {
             return
                 content($recipe, $ingList, $intList);
         });
     }
 }
-
-
-
-
-
-$view = new RecipeView($recipe, $ingList, $intList);
-$view->displayRecipePage();

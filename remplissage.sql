@@ -1,0 +1,15 @@
+ INSERT INTO Recette VALUES ( 0,
+       "kouskous",
+        "description1",
+        "https://images.unsplash.com/photo-1541518763669-27fef04b14ea?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1633&q=80",
+        "",
+        -1,
+        30,
+        21,
+        5,
+        4,
+        "Plats",
+        5,
+        "published",
+       TRUE
+      )

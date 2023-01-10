@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../models/Recipe.php';
 
 /**
  * home class
@@ -9,6 +10,6 @@ class Category
 
     public function index()
     {
-        $this->view('category');
+        $this->view('category', array());
     }
 }

@@ -4,13 +4,14 @@ require_once "shared/main.php";
 class CategoryView
 {
     private $catTitle;
-    public function __construct($name)
+
+    public function display()
     {
 
-        $this->catTitle = $name;
-    }
-    public function index()
-    {
+        $URL = $_GET['url'];
+        $URL = explode("/", trim($URL, "/"));
+        $this->catTitle = ucfirst($URL[1]);
+
         $main = new MainLayout();
         $main->displayLayout($this->catTitle, function () {
             $this->displayCategory();
@@ -280,27 +281,3 @@ function content($catT)
     </script>
 <?php
 };
-
-
-$URL = $_GET['url'];
-$URL = explode("/", trim($URL, "/"));
-switch ($URL[1]) {
-    case "boissons":
-        $view = new CategoryView(ucfirst($URL[1]));
-        break;
-    case "plats":
-        $view = new CategoryView(ucfirst($URL[1]));
-        break;
-    case "desserts":
-        $view = new CategoryView(ucfirst($URL[1]));
-        break;
-    case "entrees":
-        $view = new CategoryView(ucfirst($URL[1]));
-        break;
-
-    default:
-        $view = new CategoryView("Plats");
-        break;
-}
-
-$view->index();

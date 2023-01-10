@@ -32,13 +32,16 @@ class Main
             </a>
             <ul class="nav-ul">
                 <li>
-                    <a href="http://" target="_blank" rel="noopener noreferrer">Acceuil</a>
+                    <a href="<?php echo ROOT ?>/home">Acceuil</a>
                 </li>
                 <li>
-                    <a href="http://" target="_blank" rel="noopener noreferrer">News</a>
+                    <a href="<?php echo ROOT ?>/news" rel="noopener noreferrer">News</a>
                 </li>
                 <li>
-                    <a href="http://" target="_blank" rel="noopener noreferrer">Idée de recettes</a>
+                    <a href="http://">Idée de recettes</a>
+                </li>
+                <li>
+                    <a href="http://">Nutrition</a>
                 </li>
                 <li class="menu">
                     <div class="header">
@@ -52,17 +55,17 @@ class Main
                     <div class="menu-content">
                         <ul>
                             <li>
-                                <a href="http://" target="_blank" rel="noopener noreferrer">
+                                <a href="<?php echo ROOT ?>/category/healthy">
                                     Healthy
                                 </a>
                             </li>
                             <li>
-                                <a href="http://" target="_blank" rel="noopener noreferrer">
+                                <a href="<?php echo ROOT ?>/category/fêtes">
                                     Fêtes
                                 </a>
                             </li>
                             <li>
-                                <a href="http://" target="_blank" rel="noopener noreferrer">
+                                <a href="<?php echo ROOT ?>/category/saison">
                                     Saison
                                 </a>
 
@@ -71,7 +74,7 @@ class Main
                     </div>
                 </li>
                 <li>
-                    <a href="http://" target="_blank" rel="noopener noreferrer">Contact</a>
+                    <a href="http://">Contact</a>
                 </li>
             </ul>
             <div class="socials">
@@ -79,9 +82,9 @@ class Main
                 <img src="<?php echo ROOT ?>/assets/svg/instagram.svg" alt="Instagram Icon">
                 <img src="<?php echo ROOT ?>/assets/svg/twitter.svg" alt="Twitter Icon">
             </div>
-            <a href="http://" target="_blank" rel="noopener noreferrer">
+            <a href="<?php echo ROOT ?>/authentication">
                 <div class="login-button">
-                    Login
+                    LOGIN
                 </div>
             </a>
             <div class="menu-icon">
@@ -197,7 +200,7 @@ class Main
                     echo $description
                     ?></p>
             </div>
-            <a href="http://" target="_blank" rel="noopener noreferrer">
+            <a href=<?php echo ROOT . '/recipe/' . $id ?> target="_blank" rel="noopener noreferrer">
                 <input class="primary-button" type="button" value="Lire la suite">
             </a>
         </div>
@@ -231,6 +234,7 @@ class Main
                 ?>
                     <div class="slide">
                         <?php
+
                         $this->RecipeCard($recipe->title, $recipe->description, $recipe->image, $recipe->id);
                         ?>
                     </div>

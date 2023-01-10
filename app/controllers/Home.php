@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 /**
  * home class
@@ -10,7 +10,6 @@ class Home
 	public function index()
 	{
 
-		$this->view('home');
+		$this->view('home', array());
 	}
-
 }

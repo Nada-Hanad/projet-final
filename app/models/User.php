@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 /**
@@ -6,45 +6,41 @@
  */
 class User
 {
-	
+
 	use Model;
 
-	protected $table = 'users';
+	protected $table = 'Utilisateurs';
 
 	protected $allowedColumns = [
 
 		'email',
 		'password',
+		'sexe',
+		'date_naissance'
+
 	];
 
 	public function validate($data)
 	{
-		$this->errors = [];
 
-		if(empty($data['email']))
-		{
-			$this->errors['email'] = "Email is required";
-		}else
-		if(!filter_var($data['email'],FILTER_VALIDATE_EMAIL))
-		{
-			$this->errors['email'] = "Email is not valid";
-		}
-		
-		if(empty($data['password']))
-		{
-			$this->errors['password'] = "Password is required";
-		}
-		
-		if(empty($data['terms']))
-		{
-			$this->errors['terms'] = "Please accept the terms and conditions";
+		$errors = [];
+
+		if (empty($data['email'])) {
+			$errors['email'] = "L'email est obligatoire";
 		}
 
-		if(empty($this->errors))
-		{
-			return true;
+		if (empty($data['password'])) {
+			$errors['password'] = "Le mot de passe est obligatoire";
 		}
 
-		return false;
+		if (empty($data['sexe'])) {
+			$errors['sexe'] = "Le sexe est obligatoire";
+		}
+
+		if (empty($data['date_naissance'])) {
+			$errors['date_naissance'] = "La date de naissance est obligatoire";
+		}
+
+		return $errors;
 	}
 }

@@ -3,13 +3,12 @@
 /**
  * home class
  */
-class News
+class Authentication
 {
     use Controller;
 
     public function index()
     {
-
-        $this->view('news',  array());
+        $this->view('authentication', array());
     }
 }
