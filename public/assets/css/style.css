@@ -9,6 +9,9 @@
   -webkit-user-drag: none;
   color: rgb(var(--dark));
 }
+::-webkit-scrollbar {
+  display: none;
+}
 
 body {
   overflow-x: hidden;
@@ -223,6 +226,9 @@ footer .socials img {
 .card-content h3 {
   color: white;
 }
+.card-content h3 {
+  font-size: 64px;
+}
 .recipe-card {
   height: fit-content;
   width: 300px;
@@ -282,7 +288,7 @@ footer .socials img {
 }
 #carouselExampleSlidesOnly {
   height: 70vh;
-  width: 90vw;
+  width: 80vw;
   margin: 50px auto;
 }
 
@@ -941,7 +947,7 @@ i.hover {
   border: 0.125rem solid var(--primary-color);
 }
 
-.form button {
+.form .button {
   cursor: pointer;
   width: 100%;
   padding: 0.6rem 0;
@@ -1146,7 +1152,14 @@ i.hover {
   align-items: center;
   flex-direction: column;
 }
+.gender-input {
+  margin-bottom: 16px;
 
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  accent-color: rgb(var(--main));
+}
 @media screen and (max-width: 1024px) {
   nav {
     overflow: hidden !important;

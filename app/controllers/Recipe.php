@@ -21,8 +21,8 @@ class Recipe
             $this->view('_404', array());
         } else {
             $model = new RecipeModel();
-            $result = $model->getById($id);
-            $this->view('Recipe', array("recipe" => $result, "ingredients" => [], "steps" => []));
+            $result = $model->getRecipeById($id);
+            $this->view('Recipe', array("recipe" => $result["recipe"], "ingredients" => $result["ingredients"], "steps" => $result["steps"]));
         }
     }
 }

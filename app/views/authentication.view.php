@@ -1,8 +1,23 @@
 <?php
 require_once "shared/mainLayout.php";
 require_once "shared/main.php";
+if (isset($_POST["login"])) {
+    header("Location: https://www.examplecom/");
+
+    // $username = strip_tags(trim($_POST['email']));
+    // $password = strip_tags(trim($_POST['password']));
+    // $count = 0;
+
+
+    // if ($count > 0) {
+    //     $_SESSION["username"] = $username;
+    //     header('Location: UserDashboard.php');
+    // }
+    // echo "<center><h1>Enter a valide Username,Password pls</h1></center>";
+}
 class AuthenticationView
 {
+
 
     public function display()
     {
@@ -10,7 +25,11 @@ class AuthenticationView
         {
 
 
+
+
 ?>
+
+
 
             <div id="container" class="container">
                 <!-- FORM SECTION -->
@@ -18,7 +37,7 @@ class AuthenticationView
                     <!-- SIGN UP -->
                     <div class="col align-items-center flex-col sign-up">
                         <div class="form-wrapper align-items-center">
-                            <div class="form sign-up">
+                            <form class="form sign-up">
                                 <div class="input-group">
                                     <i class='bx bxs-user'></i>
                                     <input type="text" placeholder="Nom complet">
@@ -28,9 +47,11 @@ class AuthenticationView
                                     <input type="email" placeholder="Email">
                                 </div>
                                 <div class="input-group">
-                                    <i class='bx bx-mail-send'></i>
+                                    <i class='bx bx-mail-send make-grey'></i>
                                     <input type="date" class="form-control" id="date-naissance" placeholder="Date de naissance">
                                 </div>
+
+
 
 
                                 <div class="well">
@@ -43,9 +64,15 @@ class AuthenticationView
                                     <i class='bx bxs-lock-alt'></i>
                                     <input type="password" placeholder="Confirmer le mot de passe">
                                 </div>
-                                <button>
-                                    Créer
-                                </button>
+                                <div class="gender-input">
+                                    <span>
+                                        Sexe
+                                    </span>
+                                    <input type="radio" name="gender" value="male"> Male
+                                    <input type="radio" name="gender" value="female"> Female
+                                </div>
+                                <input class="button" type="submit" value="Créer">
+
                                 <p>
                                     <span>
                                         Vous avez déja un compte?
@@ -54,7 +81,7 @@ class AuthenticationView
                                         se connecter
                                     </b>
                                 </p>
-                            </div>
+                            </form>
                         </div>
 
                     </div>
@@ -62,16 +89,15 @@ class AuthenticationView
                     <!-- SIGN IN -->
                     <div class="col align-items-center flex-col sign-in">
                         <div class="form-wrapper align-items-center">
-                            <div class="form sign-in">
+                            <form method="post" class="form sign-in" name="login">
                                 <div class="input-group">
-                                    <input type="text" placeholder="Email">
+                                    <input name="email" type="text" placeholder="Email">
                                 </div>
                                 <div class="input-group">
-                                    <input type="password" placeholder="Mot de passe">
+                                    <input name="password" type="password" placeholder="Mot de passe">
                                 </div>
-                                <button>
-                                    Se connecter
-                                </button>
+                                <input type="submit" value="Se connecter" class="button">
+
                                 <p>
                                     <b>
                                         Mot de passe oublié?
@@ -85,7 +111,7 @@ class AuthenticationView
                                         Créer votre compte!
                                     </b>
                                 </p>
-                            </div>
+                            </form>
                         </div>
                         <div class="form-wrapper">
 
@@ -127,8 +153,15 @@ class AuthenticationView
                 <!-- END CONTENT SECTION -->
             </div>
 
+
             <script>
                 let container = document.getElementById("container");
+                let forms = document.querySelectorAll("form")
+                forms.forEach((e) => {
+                    e.addEventListener("submit", (event) => {
+                        event.preventDefault();
+                    })
+                })
 
                 toggle = () => {
                     container.classList.toggle("sign-in");

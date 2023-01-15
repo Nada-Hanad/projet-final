@@ -168,7 +168,7 @@ class Main
         </footer>
     <?php
     }
-    public function SwiperCard($title, $description, $image, $id)
+    public function SwiperCard($titre, $description, $image, $id)
     {
     ?>
         <div class="swiper-card">
@@ -185,7 +185,7 @@ class Main
     <?php
 
     }
-    public function RecipeCard($title, $description, $image, $id)
+    public function RecipeCard($titre, $description, $image, $id)
     {
     ?>
         <div class="recipe-card">
@@ -193,7 +193,7 @@ class Main
             <div class="recipe-card-content">
                 <h3>
                     <?php
-                    echo $title
+                    echo $titre
                     ?>
                 </h3>
                 <p> <?php
@@ -207,19 +207,12 @@ class Main
     <?php
 
     }
-    public function CategoryDisplay($category, $id)
+    public function CategoryDisplay($category, $id, $recipes)
     {
     ?>
         <?php
         //request
-        $Card1 = (object) [
-            'id' => 1,
-            'title' => 'Recipe Title',
-            'description' => 'Recipe description : Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nihil doloremque pariatur. Aperiam sit facilis quisquam deleniti fugiat nemo explicabo?',
-            'image' => 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVjaXBlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60',
-            'category' => 1
-        ];
-        $recipes = array($Card1, $Card1, $Card1, $Card1, $Card1, $Card1);
+
         ?>
         <div class="category-container">
             <div class="category-header">
@@ -235,7 +228,7 @@ class Main
                     <div class="slide">
                         <?php
 
-                        $this->RecipeCard($recipe->title, $recipe->description, $recipe->image, $recipe->id);
+                        $this->RecipeCard($recipe->titre, $recipe->description, $recipe->image, $recipe->id);
                         ?>
                     </div>
                 <?php
@@ -268,7 +261,7 @@ class Main
                         <img src=<?php echo $items[0]->image ?> alt="recipe image">
                         <div class="overlayy"></div>
                         <div class="card-content">
-                            <h3><?php echo $items[0]->title ?></h3>
+                            <h3><?php echo $items[0]->titre ?></h3>
                             <p><?php echo $items[0]->description ?></p>
                         </div>
                     </div>
@@ -281,7 +274,7 @@ class Main
                             <img src=<?php echo $items[$i]->image ?> alt="recipe image">
                             <div class="overlayy"></div>
                             <div class="card-content">
-                                <h3><?php echo $items[$i]->title ?></h3>
+                                <h3><?php echo $items[$i]->titre ?></h3>
                                 <p><?php echo $items[$i]->description ?></p>
                             </div>
                         </div>

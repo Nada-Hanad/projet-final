@@ -3,7 +3,7 @@
 
 if ($_SERVER['SERVER_NAME'] == 'localhost') {
 	/** database config **/
-	define('DBNAME', 'test');
+	define('DBNAME', 'tdw_php');
 	define('DBHOST', '127.0.0.1');
 	define('DBUSER', 'root');
 	define('DBPASS', 'root');
@@ -12,7 +12,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 	define('ROOT', 'http://localhost/Projet_Final/public');
 } else {
 	/** database config **/
-	define('DBNAME', 'we_cook');
+	define('DBNAME', 'tdw_php');
 	define('DBHOST', '127.0.0.1');
 	define('DBUSER', 'root');
 	define('DBPASS', 'root');

@@ -1,4 +1,5 @@
 <?php
+require_once __DIR__ . '/../models/Recipe.php';
 
 /**
  * home class
@@ -9,7 +10,9 @@ class Home
 
 	public function index()
 	{
+		$recipeModel = new RecipeModel();
+		$recipes = $recipeModel->findAll();
 
-		$this->view('home', array());
+		$this->view('home', $recipes);
 	}
 }

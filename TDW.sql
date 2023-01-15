@@ -5,8 +5,7 @@ CREATE TABLE Utilisateurs (
         email TEXT NOT NULL,
         sexe TEXT NOT NULL,
         date_naissance DATE NOT NULL, 
-        hash_mot_de_passe TEXT NOT NULL
-
+        mot_de_passe TEXT NOT NULL
         );
 CREATE TABLE Recette (
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -23,6 +22,7 @@ CREATE TABLE Recette (
         notation INTEGER,
         etat TEXT NOT NULL,
         healthy BOOLEAN NOT NULL,
+        calories INTEGER,
         FOREIGN KEY (creator_id) REFERENCES Utilisateurs(id)
         );
 CREATE TABLE Ingredient (
@@ -46,8 +46,6 @@ CREATE TABLE Etape (
         id_recette INTEGER NOT NULL,
         FOREIGN KEY (id_recette) REFERENCES Recette(id)
         );
-
-
 CREATE TABLE RecetteIngredient (
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
         quantite INTEGER NOT NULL,
@@ -57,16 +55,6 @@ CREATE TABLE RecetteIngredient (
         FOREIGN KEY (id_recette) REFERENCES Recette(id),
         FOREIGN KEY (id_ingredient) REFERENCES Ingredient(id)
         );
-
-
-
-
-
-
-    
-
-
-
 CREATE TABLE NotationUtilisateur (
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
         id_recette INTEGER NOT NULL,

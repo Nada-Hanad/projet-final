@@ -10,8 +10,10 @@ class RecipeView
     private $steps;
     public function __construct($data)
     {
+
         $this->recipe = $data['recipe'];
         $this->ingredients = $data['ingredients'];
+
         $this->steps = $data['steps'];
     }
     public function display()
@@ -140,7 +142,7 @@ class RecipeView
                                 foreach ($ingList as $ing) {
                                 ?>
                                     <li>
-                                        <?php echo $ing->quantity ?> <?php echo $ing->unit ?> <?php echo $ing->title ?>
+                                        <?php echo $ing->quantite ?> <?php echo $ing->unite ?> <?php echo $ing->nom ?>.
                                     </li>
                                 <?php
                                 }
