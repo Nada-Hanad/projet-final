@@ -18,7 +18,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 	define('DBPASS', 'root');
 	define('DBDRIVER', '');
 
-	define('ROOT', 'https://www.yourwebsite.com');
+	define('ROOT', '');
 }
 
 define('APP_NAME', "My Webiste");

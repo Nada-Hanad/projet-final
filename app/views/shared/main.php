@@ -41,7 +41,7 @@ class Main
                     <a href="http://">Idée de recettes</a>
                 </li>
                 <li>
-                    <a href="http://">Nutrition</a>
+                    <a href="<?php echo ROOT ?>/nutrition">Nutrition</a>
                 </li>
                 <li class="menu">
                     <div class="header">
@@ -82,11 +82,28 @@ class Main
                 <img src="<?php echo ROOT ?>/assets/svg/instagram.svg" alt="Instagram Icon">
                 <img src="<?php echo ROOT ?>/assets/svg/twitter.svg" alt="Twitter Icon">
             </div>
-            <a href="<?php echo ROOT ?>/authentication">
+            <?php
+            if (isset($_SESSION['user'])) {
+                echo '
+                 <a href="' . ROOT . '/userDashboard">
+                <div class="secondary-button">
+                    PROFILE
+                </div>
+                </a>
+                <a href="' . ROOT . '/authentication/logout">
+                <i class="fa-solid fa-arrow-right-from-bracket logout-icon"></i>
+                </a>
+               
+                ';
+            } else {
+                echo ' <a href="' . ROOT . '/authentication">
                 <div class="login-button">
                     LOGIN
                 </div>
-            </a>
+            </a>';
+            }
+            ?>
+
             <div class="menu-icon">
                 <div class="bar"></div>
                 <div class="bar"></div>

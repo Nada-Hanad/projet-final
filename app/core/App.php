@@ -6,7 +6,7 @@ class App
 
 
 	private $controller = 'Home';
-	private $method 	= 'index';
+	private $method = 'index';
 
 	public function splitURL()
 	{

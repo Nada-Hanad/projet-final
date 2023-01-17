@@ -51,7 +51,7 @@ class NewsView
 <?php
         };
 
-        $main->displayLayout("Acceuil", function () {
+        $main->displayLayout("News", function () {
             return
                 content();
         });

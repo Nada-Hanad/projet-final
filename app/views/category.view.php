@@ -4,6 +4,15 @@ require_once "shared/main.php";
 class CategoryView
 {
     private $catTitle;
+    private $data;
+    public function __construct($data)
+    {
+        $this->data = $data;
+    }
+
+
+
+
 
     public function display()
     {
@@ -20,35 +29,14 @@ class CategoryView
     public function displayCategory()
     {
 
-        content($this->catTitle);
+        content($this->catTitle, $this->data);
     }
 }
 
 $main = new MainLayout();
-function content($catT)
+function content($catT, $list)
 {
-    $Card1 = (object) [
-        'id' => 1,
-        'title' => 'Recipe Title1',
-        'description' => 'Recipe description : Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nihil doloremque pariatur. Aperiam sit facilis quisquam deleniti fugiat nemo explicabo?',
-        'image' => 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVjaXBlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60',
-        'category' => 1
-    ];
-    $Card2 = (object) [
-        'id' => 1,
-        'title' => 'Recipe Title2',
-        'description' => 'Recipe description : Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nihil doloremque pariatur. Aperiam sit facilis quisquam deleniti fugiat nemo explicabo?',
-        'image' => 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVjaXBlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60',
-        'category' => 1
-    ];
-    $Card3 = (object) [
-        'id' => 1,
-        'title' => 'Recipe Title3',
-        'description' => 'Recipe description : Lorem ipsum dolor sit amet, consectetur adipisicing elit. A nihil doloremque pariatur. Aperiam sit facilis quisquam deleniti fugiat nemo explicabo?',
-        'image' => 'https://images.unsplash.com/photo-1466637574441-749b8f19452f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Mnx8cmVjaXBlfGVufDB8MnwwfHw%3D&auto=format&fit=crop&w=800&q=60',
-        'category' => 1
-    ];
-    $list = array($Card1, $Card2, $Card3, $Card1, $Card1, $Card1);
+
 
 ?>
     <div class="category-title">
@@ -58,10 +46,10 @@ function content($catT)
             <i class="fa-solid fa-sliders"></i>
         </div>
     </div>
-    <div class="filter-section">
+    <form name="filterForm" class="filter-section">
         <div class="filter-item">
             <h2>Par catégorie</h2>
-            <form class="cat-form" action="">
+            <div class="cat-form" action="">
                 <label>
                     <input type="checkbox" name="plats" id="plats">
                     Plats
@@ -78,25 +66,25 @@ function content($catT)
                     <input type="checkbox" name="entrees" id="entrees">
                     Entrées
                 </label>
-            </form>
+            </div>
 
         </div>
         <div class="filter-item">
             <h2>Par temps</h2>
-            <form class="par-temps" action="">
+            <div class="par-temps" action="">
                 Temps cuissant
 
                 <div class="temps-item">
 
                     <label>
                         De
-                        <input type="number">
+                        <input name="cuissantMin" type="number">
                         MIN
                     </label>
 
                     <label>
                         &nbsp; à
-                        <input type="number">
+                        <input name="cuissantMax" type="number">
                         MIN
                     </label>
                 </div>
@@ -106,13 +94,13 @@ function content($catT)
 
                         <label>
                             De
-                            <input type="number">
+                            <input name="reposMin" type="number">
                             MIN
                         </label>
 
                         <label>
                             &nbsp; à
-                            <input type="number">
+                            <input name="reposMax" type="number">
                             MIN
                         </label>
                     </div>
@@ -123,24 +111,24 @@ function content($catT)
 
                         <label>
                             De
-                            <input type="number">
+                            <input name="totalMin" type="number">
                             MIN
                         </label>
 
                         <label>
                             &nbsp; à
-                            <input type="number">
+                            <input name="totalMax" type="number">
                             MIN
                         </label>
                     </div>
                 </div>
-            </form>
+            </div>
 
 
         </div>
         <div class="filter-item">
             <h2>Par notation</h2>
-            <form class="cat-form" action="">
+            <div class="cat-form" action="">
                 <label class="rating-input">
                     <input type="checkbox" name="1stars" id="1stars">
 
@@ -208,11 +196,11 @@ function content($catT)
 
                     </div>
                 </label>
-            </form>
+            </div>
         </div>
         <div class="filter-item">
             <h2>Par saison</h2>
-            <form class="cat-form" action="">
+            <div class="cat-form" action="">
                 <label>
                     <input type="checkbox" name="hiver" id="hiver">
                     Hiver
@@ -229,54 +217,107 @@ function content($catT)
                     <input type="checkbox" name="automne" id="automne">
                     Automne
                 </label>
-            </form>
+            </div>
         </div>
         <div class="filter-item last">
             <h2>Par calorie</h2>
-            <form class="calories" action="">
+            <div class="calories" action="">
 
                 <div class="temps-item">
 
                     <label>
                         De
-                        <input type="number">
+                        <input name="calorieMin" type="number">
                         cals
                     </label>
 
                     <label>
                         &nbsp; à
-                        <input type="number">
+                        <input name="calorieMax" type="number">
                         cals
                     </label>
                 </div>
-            </form>
+            </div>
 
 
         </div>
-        <div class="primary-button">
+        <button class="primary-button apply-filter" type="submit">
             Appliquer
-        </div>
-    </div>
+        </button>
+    </form>
     <div class="news-container">
         <?php
-        foreach ($list as $recipe) {
-            $m = new MainLayout();
+        if (count($list) > 0) {
+
+            foreach ($list as $recipe) {
+                $m = new MainLayout();
         ?>
 
-            <?php
-            $m->RecipeCard($recipe->title, $recipe->description, $recipe->image, $recipe->id);
-            ?>
+                <?php
+                $m->RecipeCard($recipe->titre, $recipe->description, $recipe->image, $recipe->id);
+                ?>
 
         <?php
+            }
+        } else {
+            echo "<h2>Malheuresement il n y'a pas données à afficher. </h2>";
         }
         ?>
 
     </div>
     <script>
+        const applyFilter = document.querySelector(".apply-filter");
+
         const filterButton = document.querySelector(".filter-button");
         const filterSection = document.querySelector(".filter-section");
         filterButton.addEventListener("click", () => {
             filterSection.classList.toggle("active");
+        });
+        applyFilter.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            let maxCalories = document.filterForm.calorieMax.value
+            let minCalories = document.filterForm.calorieMin.value
+            let maxTime = document.filterForm.totalMax.value
+            let minTime = document.filterForm.totalMin.value
+            let hiver = document.filterForm.hiver.checked
+            let printemps = document.filterForm.printemps.checked
+            let ete = document.filterForm.ete.checked
+            let automne = document.filterForm.automne.checked
+            let oneStar = document.filterForm["1stars"].checked
+            let twoStar = document.filterForm["2stars"].checked
+            let threeStar = document.filterForm["3stars"].checked
+            let fourStar = document.filterForm["4stars"].checked
+            let fiveStar = document.filterForm["5stars"].checked
+            let url = `http://localhost/Projet_Final/public/recipe/filter?maxCalories=${maxCalories}&minCalories=${minCalories}&maxTime=${maxTime}&minTime=${minTime}&hiver=${hiver}&printemps=${printemps}&ete=${ete}&automne=${automne}&oneStar=${oneStar}&twoStar=${twoStar}&threeStar=${threeStar}&fourStar=${fourStar}&fiveStar=${fiveStar}`
+
+            fetch(url)
+                .then(response => {
+
+                    return response.json()
+                })
+                .then(data => {
+                    console.log(data)
+                    let newsContainer = document.querySelector(".news-container");
+                    newsContainer.innerHTML = "";
+                    data.forEach(recipe => {
+                        let card = document.createElement("div");
+                        card.classList.add("recipe-card");
+                        card.innerHTML = `
+                        <div class="recipe-card-image">
+                            <img src="${recipe.image}" alt="">
+                        </div>
+                        <div class="recipe-card-content">
+                            <h2>${recipe.titre}</h2>
+                            <p>${recipe.description}</p>
+                            <a href="http://localhost:8080/ProjetWeb/recipes/${recipe.id}">Voir la recette</a>
+                        </div>
+                        `;
+                        newsContainer.appendChild(card);
+                    })
+                })
+
+
         });
     </script>
 <?php

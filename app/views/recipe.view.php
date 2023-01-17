@@ -166,6 +166,7 @@ class RecipeView
                             </ol>
 
                         </div>
+                        <div class="" id="result"></div>
                     </div>
                     <div class="action-notation">
                         <span>
@@ -184,7 +185,7 @@ class RecipeView
                             </div>
 
                         </div>
-                        <div class="secondary-button">
+                        <div class="secondary-button rate-btn">
                             Noter
                         </div>
                     </div>
@@ -192,11 +193,110 @@ class RecipeView
 
                 </div>
             </div>
-            <script src="views/scripts/rating.js"></script>
+
             <script>
+                //send request to check if recipe is liked by user in session
+                let note = 0;
+                fetch("http://localhost/Projet_Final/public/userEdit/isLoggedIn", {
+                        method: "GET",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                        },
+
+                    })
+                    .then((response) => response.text())
+                    .then((res) => {
+                        if (JSON.parse(res)) {
+                            fetch("http://localhost/Projet_Final/public/userEdit/isLikedByUser", {
+                                    method: "POST",
+                                    headers: {
+                                        "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                                    },
+                                    body: "recetteId=" + <?php echo $recipe->id ?>
+
+
+                                })
+                                .then((response) => response.text())
+                                .then((res) => {
+                                    if (JSON.parse(res) == true) {
+                                        likeButton.classList.add("liked");
+                                    }
+                                });
+
+                        }
+
+                    })
+
+
+
+
+
+
                 const likeButton = document.querySelector(".like-action")
                 likeButton.addEventListener("click", () => {
-                    likeButton.classList.toggle("liked")
+
+                    fetch("http://localhost/Projet_Final/public/userEdit/isLoggedIn", {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                            },
+
+                        })
+                        .then((response) => response.text())
+                        .then((res) => {
+                            if (JSON.parse(res)) {
+
+                                if (!likeButton.classList.contains("liked")) {
+                                    fetch("http://localhost/Projet_Final/public/userEdit/addToPreferences", {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                                            },
+                                            body: "recetteId=" + <?php echo $recipe->id ?>
+
+
+                                        })
+                                        .then((response) => response.text())
+                                        .then((res) => {
+                                            likeButton.classList.add("liked");
+
+                                        });
+
+
+                                } else {
+
+                                    fetch("http://localhost/Projet_Final/public/userEdit/removeFromPreferences", {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                                            },
+                                            //add recetteId to body
+                                            body: "recetteId=" + <?php echo $recipe->id ?>
+
+                                        })
+                                        .then((response) => response.text())
+                                        .then((res) => {
+                                            likeButton.classList.remove("liked");
+
+                                        });
+
+                                }
+                            } else {
+
+                                alert("Vous devez être connecté pour ajouter une recette à vos préférences");
+
+                            }
+
+
+                        });
+
+
+
+
+
+
+
+
                 })
                 const starsContainer = document.querySelectorAll(".stars");
                 starsContainer.forEach((stars) => {
@@ -211,7 +311,8 @@ class RecipeView
                                         e.classList.remove("checked");
                                     }
                                 });
-                                console.log(i + 1); //rating is i+1
+                                note = i + 1;
+
                             });
                             e.addEventListener("mouseover", () => {
                                 starIcons.forEach((e, j) => {
@@ -233,6 +334,41 @@ class RecipeView
                             });
                         }
                     });
+                });
+                const rateButton = document.querySelector(".rate-btn");
+                rateButton.addEventListener("click", () => {
+                    fetch("http://localhost/Projet_Final/public/userEdit/isLoggedIn", {
+                            method: "GET",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                            },
+
+                        })
+                        .then((response) => response.text())
+                        .then((res) => {
+                            if (JSON.parse(res)) {
+                                if (note == 0) {
+                                    alert("Vous devez donner une note pour noter cette recette");
+                                } else {
+                                    fetch("http://localhost/Projet_Final/public/userEdit/rateRecipe", {
+                                            method: "POST",
+                                            headers: {
+                                                "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+                                            },
+                                            body: "recetteId=" + <?php echo $recipe->id ?> + "&note=" + `${note}`
+                                        })
+                                        .then((response) => response.text())
+                                        .then((res) => {
+                                            alert("Votre note a été ajoutée");
+                                        });
+                                }
+
+                            } else {
+                                alert("Vous devez être connecté pour noter une recette");
+                            }
+
+                        })
+
                 });
             </script>
             <?php

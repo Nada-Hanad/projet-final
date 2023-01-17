@@ -4,7 +4,7 @@
 /**
  * User class
  */
-class Ingredient
+class IngredientModel
 {
 
     use Model;

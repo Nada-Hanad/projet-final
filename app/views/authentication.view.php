@@ -1,27 +1,29 @@
 <?php
 require_once "shared/mainLayout.php";
 require_once "shared/main.php";
-if (isset($_POST["login"])) {
-    header("Location: https://www.examplecom/");
 
-    // $username = strip_tags(trim($_POST['email']));
-    // $password = strip_tags(trim($_POST['password']));
-    // $count = 0;
-
-
-    // if ($count > 0) {
-    //     $_SESSION["username"] = $username;
-    //     header('Location: UserDashboard.php');
-    // }
-    // echo "<center><h1>Enter a valide Username,Password pls</h1></center>";
-}
 class AuthenticationView
 {
+
+    private $data;
+    public function __construct($data)
+    {
+        if (count($data) == 0) {
+            $data = array(
+                "r-errors" => array(),
+                "l-errors" => array(),
+            );
+        }
+        $this->data = $data;
+    }
+
+
+
 
 
     public function display()
     {
-        function content()
+        function content($data)
         {
 
 
@@ -37,18 +39,18 @@ class AuthenticationView
                     <!-- SIGN UP -->
                     <div class="col align-items-center flex-col sign-up">
                         <div class="form-wrapper align-items-center">
-                            <form class="form sign-up">
+                            <form class="form sign-up" method="post" action=<?php echo ROOT . "/authentication/signUp" ?>>
                                 <div class="input-group">
                                     <i class='bx bxs-user'></i>
-                                    <input type="text" placeholder="Nom complet">
+                                    <input name="nom" type="text" placeholder="Nom complet">
                                 </div>
                                 <div class="input-group">
                                     <i class='bx bx-mail-send'></i>
-                                    <input type="email" placeholder="Email">
+                                    <input name="email" type="email" placeholder="Email">
                                 </div>
                                 <div class="input-group">
                                     <i class='bx bx-mail-send make-grey'></i>
-                                    <input type="date" class="form-control" id="date-naissance" placeholder="Date de naissance">
+                                    <input type="date" class="form-control" id="date-naissance" name="date_de_naissance" placeholder="Date de naissance">
                                 </div>
 
 
@@ -58,20 +60,30 @@ class AuthenticationView
                                 </div>
                                 <div class="input-group">
                                     <i class='bx bxs-lock-alt'></i>
-                                    <input type="password" placeholder="Mot de passe">
+                                    <input name="password" type="password" placeholder="Mot de passe">
                                 </div>
-                                <div class="input-group">
-                                    <i class='bx bxs-lock-alt'></i>
-                                    <input type="password" placeholder="Confirmer le mot de passe">
-                                </div>
+
                                 <div class="gender-input">
                                     <span>
                                         Sexe
                                     </span>
-                                    <input type="radio" name="gender" value="male"> Male
-                                    <input type="radio" name="gender" value="female"> Female
+                                    <input type="radio" name="sexe" value="male" checked="checked"> Male
+                                    <input type="radio" name="sexe" value="female"> Female
                                 </div>
-                                <input class="button" type="submit" value="Créer">
+                                <p>
+                                    <span class="error-text">
+
+                                        <?php
+
+                                        if (count($data["r-errors"]) > 0) {
+                                            echo '<i class="fa-solid fa-triangle-exclamation error-icon"></i>';
+                                            echo $data["r-errors"][0];
+                                            echo "</br>";
+                                        }
+                                        ?>
+                                    </span>
+                                </p>
+                                <input name="register-btn" class="button" type="submit" value="Créer">
 
                                 <p>
                                     <span>
@@ -89,14 +101,30 @@ class AuthenticationView
                     <!-- SIGN IN -->
                     <div class="col align-items-center flex-col sign-in">
                         <div class="form-wrapper align-items-center">
-                            <form method="post" class="form sign-in" name="login">
+                            <form method="post" class="form sign-in" name="login" action=<?php echo ROOT . "/authentication/login" ?>>
                                 <div class="input-group">
                                     <input name="email" type="text" placeholder="Email">
                                 </div>
                                 <div class="input-group">
                                     <input name="password" type="password" placeholder="Mot de passe">
                                 </div>
-                                <input type="submit" value="Se connecter" class="button">
+                                <button type="submit" class="button" name='login-btn'>
+                                    Se connecter
+                                </button>
+                                <p>
+                                    <span class="error-text">
+
+                                        <?php
+
+
+                                        if (count($data["l-errors"]) > 0) {
+                                            echo '<i class="fa-solid fa-triangle-exclamation error-icon"></i>';
+                                            echo $data["l-errors"][0];
+                                            echo "</br>";
+                                        }
+                                        ?>
+                                    </span>
+                                </p>
 
                                 <p>
                                     <b>
@@ -156,12 +184,12 @@ class AuthenticationView
 
             <script>
                 let container = document.getElementById("container");
-                let forms = document.querySelectorAll("form")
-                forms.forEach((e) => {
-                    e.addEventListener("submit", (event) => {
-                        event.preventDefault();
-                    })
-                })
+                // let forms = document.querySelectorAll("form")
+                // forms.forEach((e) => {
+                //     e.addEventListener("submit", (event) => {
+                //         event.preventDefault();
+                //     })
+                // })
 
                 toggle = () => {
                     container.classList.toggle("sign-in");
@@ -180,9 +208,10 @@ class AuthenticationView
 
 
         $main = new MainLayout();
-        $main->displayLayout("Acceuil", function () {
+        $d = $this->data;
+        $main->displayLayout("Acceuil", function () use ($d) {
             return
-                content();
+                content($d);
         });
     }
 }

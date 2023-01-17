@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../models/Recipe.php';
+require_once __DIR__ . '/../models/RecipeModel.php';
 
 
 /**
@@ -24,5 +24,8 @@ class Recipe
             $result = $model->getRecipeById($id);
             $this->view('Recipe', array("recipe" => $result["recipe"], "ingredients" => $result["ingredients"], "steps" => $result["steps"]));
         }
+    }
+    public function filter()
+    {
     }
 }

@@ -23,12 +23,14 @@ CREATE TABLE Recette (
         etat TEXT NOT NULL,
         healthy BOOLEAN NOT NULL,
         calories INTEGER,
+        saison TEXT,
         FOREIGN KEY (creator_id) REFERENCES Utilisateurs(id)
         );
 CREATE TABLE Ingredient (
         id INTEGER PRIMARY KEY AUTO_INCREMENT,
         nom TEXT NOT NULL,
         description TEXT NOT NULL,
+        saison TEXT NOT NULL,
         image TEXT NOT NULL
 
         );

@@ -14,6 +14,8 @@ class HomeView
         function content($data)
         {
 
+
+
             $m = new Main();
             $m->Diaporama($data);
             $platsRecipes = [];
