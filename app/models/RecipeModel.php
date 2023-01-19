@@ -62,6 +62,8 @@ class RecipeModel
         $recipes = $this->get_rows($query, $data);
         return $recipes;
     }
+
+
     // $query = "select * from $this->table where ";
     // $data = array();
     // $i = 0;

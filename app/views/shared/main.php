@@ -41,7 +41,7 @@ class Main
                     <a href="<?php echo ROOT ?>/news" rel="noopener noreferrer">News</a>
                 </li>
                 <li>
-                    <a href="http://">Idée de recettes</a>
+                    <a href="<?php echo ROOT ?>/ideeRecette">Idée de recettes</a>
                 </li>
                 <li>
                     <a href="<?php echo ROOT ?>/nutrition">Nutrition</a>
@@ -232,7 +232,7 @@ class Main
     {
     ?>
         <div class="recipe-card">
-            <img src=<?php echo $image ?> alt="recipe image">
+            <img src="<?php echo $image ?>" alt="recipe image">
             <div class="recipe-card-content">
                 <h3>
                     <?php
@@ -260,7 +260,7 @@ class Main
         <div class="category-container">
             <div class="category-header">
                 <h2><?php echo $category ?></h2>
-                <a href="http://" target="_blank" rel="noopener noreferrer">
+                <a href="http://localhost/Projet_Final/public/category/<?php echo $category ?>" target="_blank" rel="noopener noreferrer">
                     <p>Voir plus >></p>
                 </a>
             </div>

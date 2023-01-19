@@ -180,55 +180,50 @@ class News
         $model = new NewsModel();
 
 
-        if (isset($_POST["image"])) {
 
 
-            $target_dir = dirname(__FILE__, 4) . '/storage/uploads/';
-            $fileName = uniqid() . basename($_FILES["image"]["name"]);
-            $target_file = $target_dir . $fileName;
-            $uploadOk = 1;
-            $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
+        $target_dir = dirname(__FILE__, 4) . '/storage/uploads/';
+        $fileName = uniqid() . basename($_FILES["image"]["name"]);
+        $target_file = $target_dir . $fileName;
+        $uploadOk = 1;
+        $imageFileType = strtolower(pathinfo($target_file, PATHINFO_EXTENSION));
 
-            // Check if image file is a actual image or fake image
-            if (isset($_POST["submit"])) {
-                $check = getimagesize($_FILES["image"]["tmp_name"]);
-                if ($check !== false) {
-                    $uploadOk = 1;
-                } else {
-                    $uploadOk = 0;
-                }
-            }
-
-
-
-            // Check file size
-            if ($_FILES["image"]["size"] > 500000) {
-                echo "Le ficher est très grand";
-                $uploadOk = 0;
-            }
-
-            // Allow certain file formats
-            if (
-                $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
-                && $imageFileType != "gif"
-            ) {
-                echo "Seulement JPG, JPEG, PNG & GIF sont autorisés.";
-                $uploadOk = 0;
-            }
-
-            // Check if $uploadOk is set to 0 by an error
-            if ($uploadOk == 0) {
-                echo "Un probleme s'est produit.";
-                // if everything is ok, try to upload file
+        // Check if image file is a actual image or fake image
+        if (isset($_POST["submit"])) {
+            $check = getimagesize($_FILES["image"]["tmp_name"]);
+            if ($check !== false) {
+                $uploadOk = 1;
             } else {
-                if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
-                    $_POST["image"] =  PROJECT_ROOT . "/storage/uploads/" . $fileName;
-                } else {
-                    $isError = 1;
-                    echo "Un problème s'est produit lors du téléchargement de l'image.";
-                }
+                $uploadOk = 0;
             }
         }
+
+
+
+
+
+        // Allow certain file formats
+        if (
+            $imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg"
+            && $imageFileType != "gif"
+        ) {
+            echo "Seulement JPG, JPEG, PNG & GIF sont autorisés.";
+            $uploadOk = 0;
+        }
+
+        // Check if $uploadOk is set to 0 by an error
+        if ($uploadOk == 0) {
+            echo "Un probleme s'est produit.";
+            // if everything is ok, try to upload file
+        } else {
+            if (move_uploaded_file($_FILES["image"]["tmp_name"], $target_file)) {
+                $_POST["image"] =  PROJECT_ROOT . "/storage/uploads/" . $fileName;
+            } else {
+                $isError = 1;
+                echo "Un problème s'est produit lors du téléchargement de l'image.";
+            }
+        }
+
 
         if (isset($_POST["video"])) {
             $target_dir = dirname(__FILE__, 4) . '/storage/uploads/';

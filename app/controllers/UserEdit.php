@@ -85,6 +85,25 @@ class UserEdit
     {
         $model = new UserModel();
         $model->rateRecipe($_POST['recetteId'], $_SESSION['user']->id, $_POST['note']);
+        //update recipe notation
+        $model = new RecipeModel();
+        $avg = 0;
+        //get all notation of all users
+        $model2 = new NotationUtilisateurModel;
+        $result = $model2->where(array("id_recette" => $_POST['recetteId']));
+        if (count($result) > 0) {
+            $sum = 0;
+            foreach ($result as $r) {
+                $sum += $r->note;
+            }
+            $avg = $sum / count($result);
+        }
+
+
+
+        //update row of recipe
+        $model->update($_POST['recetteId'], array("notation" => $avg));
+        //get that recipe
     }
     public function isLoggedIn()
     {
