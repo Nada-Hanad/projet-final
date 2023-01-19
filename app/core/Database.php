@@ -65,4 +65,8 @@ trait Database
 
 		return false;
 	}
+	public function lastInsertedID()
+	{
+		return $this->connect()->lastInsertId();
+	}
 }

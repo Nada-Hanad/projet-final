@@ -55,6 +55,7 @@ class UserEdit
         $user = $_SESSION['user'];
         $model = new UserModel;
 
+
         $model->addToPreferences($user->id, $_POST['recetteId']);
     }
     public function removeFromPreferences()

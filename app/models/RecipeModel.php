@@ -25,6 +25,7 @@ class RecipeModel
         'notation',
         'etat',
         'healthy',
+        "calories",
     ];
     public function getRecipeById($id)
     {

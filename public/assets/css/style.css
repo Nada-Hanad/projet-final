@@ -1,6 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&display=swap");
-
 * {
   margin: 0;
   padding: 0;
@@ -21,8 +20,21 @@ a {
   text-decoration: none;
   color: rgb(var(--dark));
 }
+.logo {
+  font-size: 32px;
+  font-weight: 700;
+}
+footer .logo {
+  text-align: center;
+  font-size: 64px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.logo span {
+  color: rgb(var(--main));
+}
 :root {
-  --main: 0, 222, 90;
   --bg: 245, 245, 245;
   --dark: 33, 33, 33;
   --light: 255, 255, 255;
@@ -293,6 +305,8 @@ footer .socials img {
 }
 
 .category-container {
+  width: 90vw;
+  margin: 0 auto;
   position: relative;
 }
 .category-header {
@@ -870,8 +884,7 @@ i.hover {
   place-items: center;
 }
 :root {
-  --primary-color: #00de5a;
-  --secondary-color: #13d862e1;
+  --secondary-color: rgba(var(--main), 0.2);
   --black: #000000;
   --white: #ffffff;
   --gray: #efefef;
@@ -945,7 +958,7 @@ i.hover {
 }
 
 .input-group input:focus {
-  border: 0.125rem solid var(--primary-color);
+  border: 0.125rem solid rgb(var(--main));
 }
 
 .form .button {
@@ -954,7 +967,7 @@ i.hover {
   padding: 0.6rem 0;
   border-radius: 0.5rem;
   border: none;
-  background-color: var(--primary-color);
+  background-color: rgb(var(--main));
   color: var(--white);
   font-size: 1.2rem;
   outline: none;
@@ -1118,7 +1131,7 @@ i.hover {
   transform: translate(35%, 0);
   background-image: linear-gradient(
     -45deg,
-    var(--primary-color) 0%,
+    rgb(var(--main)) 0%,
     var(--secondary-color) 100%
   );
   transition: 0.3s ease-in-out;
@@ -1246,7 +1259,7 @@ i.hover {
 }
 .ingredient-card {
   width: 300px;
-  height: 500px;
+  height: fit-content;
   background-color: white;
   padding: 16px;
   border-radius: 16px;
@@ -1316,6 +1329,228 @@ i.hover {
 .season span {
   font-size: 18px;
   font-weight: 600;
+}
+.news-image {
+  width: 100%;
+  height: 700px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+.contact-page {
+  width: 100vw;
+  height: calc(100vh - 64px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.contact-page h1 {
+  font-family: "Playfair Display", serif;
+  font-size: 64px;
+  text-align: center;
+  margin-bottom: 32px;
+}
+.contact-items {
+  display: flex;
+  gap: 32px;
+  align-items: center;
+  justify-content: center;
+}
+.contact-item {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  background-color: white;
+  font-size: 64px;
+  display: grid;
+  place-items: center;
+  transition: all 0.2s ease-in-out;
+}
+.contact-item:hover {
+  background-color: rgba(var(--main), 0.3);
+  color: white;
+}
+.create-recipe-button {
+  position: absolute;
+  top: 96px;
+  right: 32px;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+}
+.recipes-page__title {
+  font-family: "Playfair Display", serif;
+
+  font-size: 64px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.recipes-page__add {
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
+  background-color: white;
+  box-shadow: 0 0 16px 0 rgb(198, 198, 198);
+  position: fixed;
+  top: 100px;
+  display: grid;
+  place-items: center;
+  right: 32px;
+  font-size: 24px;
+}
+.add-recipe-page {
+  padding-top: 64px;
+  text-align: center;
+}
+.add-recipe-page__title {
+  font-family: "Playfair Display", serif;
+  font-size: 64px;
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+.add-recipe-form {
+  padding: 16px;
+
+  margin: auto;
+  display: flex;
+  justify-content: center;
+  position: relative;
+
+  gap: 32px;
+  text-align: start;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 0 16px 0 rgb(198, 198, 198);
+  margin-bottom: 64px;
+  width: 90vw;
+}
+.add-recipe-form button {
+  width: 150px;
+  height: 48px;
+  border: 1px solid rgb(198, 198, 198);
+  border-radius: 4px;
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(var(--dark));
+  cursor: pointer;
+
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}
+.form-section {
+  width: fit-content;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+.add-recipe-form label {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  gap: 32px;
+  align-items: center;
+}
+.add-recipe-form input,
+.add-recipe-form select,
+.add-recipe-form textarea {
+  height: 48px;
+  border: 1px solid rgb(198, 198, 198);
+  border-radius: 4px;
+  padding: 0 16px;
+  font-size: 16px;
+  font-weight: 500;
+  color: rgb(var(--dark));
+}
+.media {
+  width: 200px;
+}
+.card {
+  background: white;
+  padding: 16px;
+  width: 500px;
+}
+
+input {
+  border: none;
+  border-bottom: 1px rgba(0, 0, 0, 0.2) solid;
+  transition: all 200ms;
+  padding-bottom: 0.2rem;
+}
+
+input:focus {
+  outline: none;
+}
+
+.flex-horoz {
+  display: flex;
+  flex-direction: row;
+  margin: 16px 0;
+  align-items: center;
+}
+.flex-horoz > * {
+  margin: 0 8px;
+}
+.flex-horoz > *:first-child {
+  margin: 0 8px 0 0;
+}
+.flex-horoz > *:last-child {
+  margin: 0 0 0 8px;
+}
+
+.ingredient {
+  margin: 16px 0;
+}
+.recipe-card__action {
+  background-color: transparent;
+  border: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+.ingredient > *:nth-child(2) {
+  flex-grow: 10;
+  width: 80px;
+}
+.ingredient > *:nth-child(3) {
+  flex-grow: 0.5;
+  width: 80px;
+}
+.ingredient > *:nth-child(4) {
+  cursor: pointer;
+}
+.ingredient input {
+  flex-shrink: 1;
+}
+
+.add-ingredients {
+  cursor: pointer;
+}
+.etape {
+  display: flex;
+  align-items: center;
+}
+.etape textarea {
+  width: 100%;
+}
+.notation-card {
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 16px;
+  box-shadow: 0 0 16px 0 rgb(198, 198, 198);
+  margin-bottom: 64px;
+}
+.notation-card img {
+  width: 100%;
+  border-radius: 8px;
 }
 @media screen and (max-width: 1024px) {
   nav {

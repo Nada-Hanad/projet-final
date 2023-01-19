@@ -258,6 +258,7 @@ class RecipeView
                                         })
                                         .then((response) => response.text())
                                         .then((res) => {
+
                                             likeButton.classList.add("liked");
 
                                         });
@@ -276,6 +277,7 @@ class RecipeView
                                         })
                                         .then((response) => response.text())
                                         .then((res) => {
+                                            console.log(res);
                                             likeButton.classList.remove("liked");
 
                                         });

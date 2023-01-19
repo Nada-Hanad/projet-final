@@ -2,10 +2,16 @@
 require_once "layout/layout.php";
 class HomeView
 {
+    private $data;
+    public function __construct($data)
+    {
+        $this->data = $data;
+    }
     public function display()
     {
+
         $main = new AdminLayout();
-        function content()
+        function content($data)
         {
 
 ?>
@@ -14,27 +20,44 @@ class HomeView
                 <h1>
                     Bienvenue!
                 </h1>
-                <form name="adminLogin" class="admin-form" method="post">
-                    <label>
-                        Username
-                        <input type="text" placeholder="Username...">
-                    </label>
-                    <label>
-                        Mot de passe
+                <?php
+                if (!isset($_SESSION['admin'])) {
+                ?>
+                    <form action="http://localhost/Projet_Final/admin/home/authAdmin" name="adminLogin" class="admin-form" method="post">
+                        <label>
+                            Username
+                            <input name="username" type="text" placeholder="Username...">
+                        </label>
+                        <label>
+                            Mot de passe
+                            <input name="mot_de_passe" type="text" placeholder="•••••••">
+                        </label>
+                        <button class="submit-button" type="submit">
+                            Se connecter
+                        </button>
 
-                        <input type="text" placeholder="•••••••">
-                    </label>
-                    <input class="submit-button" type="button" value="Se connecter" type="submit">
+                        <?php
+                        if ($data) {
+                            echo "<p class='error-message'>" . $data['error'] . "</p>";
+                        }
+                        ?>
+                    </form>
+                <?php
 
-                </form>
+                }
+
+                ?>
+
             </div>
 
 <?php
         };
+        $pass = $this->data;
 
-        $main->displayLayout("Acceuil", function () {
+
+        $main->displayLayout("Acceuil", function () use ($pass) {
             return
-                content();
+                content($pass);
         });
     }
 }

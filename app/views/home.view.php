@@ -17,17 +17,21 @@ class HomeView
 
 
             $m = new Main();
-            $m->Diaporama($data);
+            $m->Diaporama($data["diaporama"]);
             $platsRecipes = [];
             $entreesRecipes = [];
             $dessertsRecipes = [];
             $boissonsRecipes = [];
-            foreach ($data as $recipe) {
-                switch ($recipe->categorie) {
+
+            foreach ($data["recipes"] as $recipe) {
+                switch (ucfirst($recipe->categorie)) {
                     case 'Plats':
                         $platsRecipes[] = $recipe;
                         break;
                     case 'Entrées':
+                        $entreesRecipes[] = $recipe;
+                        break;
+                    case 'Entrees':
                         $entreesRecipes[] = $recipe;
                         break;
                     case 'Desserts':
@@ -47,7 +51,9 @@ class HomeView
         };
         $main->displayLayout("Acceuil", function () {
             return
-                content($this->data);
+                content(
+                    $this->data
+                );
         });
     }
 }

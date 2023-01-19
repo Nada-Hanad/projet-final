@@ -16,7 +16,8 @@ class UserModel
 		'email',
 		'mot_de_passe',
 		'sexe',
-		'date_naissance'
+		'date_naissance',
+		"approved"
 
 	];
 
@@ -43,7 +44,7 @@ class UserModel
 
 		return $errors;
 	}
-	public function addToPreferences($recette_id, $user_id)
+	public function addToPreferences($user_id, $recette_id)
 	{
 		//add to the table PreferenceUtilisateur a row with recette_id and user_id
 		$model = new PreferenceUtilisateurModel;
@@ -51,7 +52,7 @@ class UserModel
 		$preference['id_recette'] = $recette_id;
 		$model->insert($preference);
 	}
-	public function removeFromPreferences($recette_id, $user_id)
+	public function removeFromPreferences($user_id, $recette_id)
 	{
 		//remove from the table PreferenceUtilisateur a row with recette_id and user_id
 		$model = new PreferenceUtilisateurModel;

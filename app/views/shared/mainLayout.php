@@ -6,10 +6,24 @@ class MainLayout extends Main
     public function displayLayout($title, $content)
     {
 ?>
-        <?php $this->Head($title); ?>
+        <?php
+        $model = new ParamsModel();
+        $params = $model->findAll();
+
+        $mainColor =  $params[0]->valeur;
+
+
+        $this->Head($title, $mainColor);
+        ?>
 
         <body>
             <?php
+
+
+
+
+
+
 
             $this->NavBar();
             $content();

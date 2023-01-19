@@ -2,7 +2,7 @@
 
 class Main
 {
-    public function Head($title)
+    public function Head($title, $mainColor)
     {
 ?>
 
@@ -15,7 +15,9 @@ class Main
             <link rel="stylesheet" href="<?php echo ROOT ?>/assets/css/style.css">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <style>
-
+                :root {
+                    --main: <?php echo $mainColor ?>;
+                }
             </style>
             <title> <?php echo $title ?> </title>
         </head>
@@ -27,8 +29,9 @@ class Main
     {
     ?>
         <nav>
-            <a href="index.php">
-                <img src="<?php echo ROOT ?>/assets/svg/logo.svg" alt="Logo">
+            <a class="logo" href="index.php">
+                We<span>Cook</span>
+
             </a>
             <ul class="nav-ul">
                 <li>
@@ -74,7 +77,7 @@ class Main
                     </div>
                 </li>
                 <li>
-                    <a href="http://">Contact</a>
+                    <a href="<?php echo ROOT ?>/contact">Contact</a>
                 </li>
             </ul>
             <div class="socials">
@@ -123,9 +126,10 @@ class Main
     {
     ?>
         <footer>
-            <div class="header">
-                <img src="<?php echo ROOT ?>/assets/svg/logo.svg" alt="Logo">
-            </div>
+            <a class="logo" href="index.php">
+                We<span>Cook</span>
+
+            </a>
             <div class="footer-content">
 
                 <div class="content">
@@ -224,6 +228,28 @@ class Main
     <?php
 
     }
+    public function NewsCard($titre, $description, $image, $id)
+    {
+    ?>
+        <div class="recipe-card">
+            <img src=<?php echo $image ?> alt="recipe image">
+            <div class="recipe-card-content">
+                <h3>
+                    <?php
+                    echo $titre
+                    ?>
+                </h3>
+                <p> <?php
+                    echo $description
+                    ?></p>
+            </div>
+            <a href=<?php echo ROOT . '/news/show/' . $id ?> target="_blank" rel="noopener noreferrer">
+                <input class="primary-button" type="button" value="Lire la suite">
+            </a>
+        </div>
+    <?php
+
+    }
     public function CategoryDisplay($category, $id, $recipes)
     {
     ?>
@@ -241,14 +267,17 @@ class Main
             <div class="slider slider-container">
                 <?php
                 foreach ($recipes as $recipe) {
+                    if ($recipe->etat == "published") {
                 ?>
-                    <div class="slide">
-                        <?php
+                        <div class="slide">
+                            <?php
 
-                        $this->RecipeCard($recipe->titre, $recipe->description, $recipe->image, $recipe->id);
-                        ?>
-                    </div>
+                            $this->RecipeCard($recipe->titre, $recipe->description, $recipe->image, $recipe->id);
+                            ?>
+                        </div>
+
                 <?php
+                    }
                 }
                 ?>
 
@@ -274,27 +303,32 @@ class Main
         <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
             <div class="carousel-inner">
                 <div class="carousel-item active">
-                    <div class="swiper-card">
-                        <img src=<?php echo $items[0]->image ?> alt="recipe image">
-                        <div class="overlayy"></div>
-                        <div class="card-content">
-                            <h3><?php echo $items[0]->titre ?></h3>
-                            <p><?php echo $items[0]->description ?></p>
+                    <a href="<?php echo $items[0]->url ?>">
+
+                        <div class="swiper-card">
+                            <img src=<?php echo $items[0]->article->image ?> alt="recipe image">
+                            <div class="overlayy"></div>
+                            <div class="card-content">
+                                <h3><?php echo $items[0]->article->titre ?></h3>
+                                <p><?php echo $items[0]->article->description ?></p>
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
                 <?php
                 for ($i = 1; $i < count($items); $i++) {
                 ?>
                     <div class="carousel-item">
-                        <div class="swiper-card">
-                            <img src=<?php echo $items[$i]->image ?> alt="recipe image">
-                            <div class="overlayy"></div>
-                            <div class="card-content">
-                                <h3><?php echo $items[$i]->titre ?></h3>
-                                <p><?php echo $items[$i]->description ?></p>
+                        <a href="<?php echo $items[$i]->url ?>">
+                            <div class="swiper-card">
+                                <img src=<?php echo $items[$i]->article->image ?> alt="recipe image">
+                                <div class="overlayy"></div>
+                                <div class="card-content">
+                                    <h3><?php echo $items[$i]->article->titre ?></h3>
+                                    <p><?php echo $items[$i]->article->description ?></p>
+                                </div>
                             </div>
-                        </div>
+                        </a>
                     </div>
                 <?php } ?>
             </div>

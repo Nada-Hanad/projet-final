@@ -36,11 +36,19 @@ class Authentication
             $model = new UserModel;
             $arr['email'] = $email;
             $result = $model->where($arr);
-            if (count($result) > 0) {
+
+            if (is_array($result) && count($result) > 0) {
                 $user = $result[0];
                 if ($password === $user->mot_de_passe) {
-                    $_SESSION['user'] = $user;
-                    header('location: ' . ROOT . '/home');
+                    if ($user->approved == 0) {
+                        array_push($data_array["l-errors"], "Votre compte n'est pas encore approuvé");
+                        $this->view('authentication', $data_array);
+                        return;
+                    } else {
+
+                        $_SESSION['user'] = $user;
+                        header('location: ' . ROOT . '/home');
+                    }
                 } else {
                     array_push($data_array["l-errors"], "Mot de passe incorrect\n");
 
@@ -48,7 +56,7 @@ class Authentication
                     $this->view('authentication', $data_array);
                 }
             } else {
-                array_push($errors, "Email incorrect");
+                array_push($data_array["l-errors"], "Email incorrecte");
                 $this->view('authentication', $data_array);
             }
         }
@@ -117,8 +125,8 @@ class Authentication
                     $arr['email'] = $email;
                     $result = $model->where($arr);
                     if (count($result) > 0) {
-                        $user = $result[0];
-                        $_SESSION['user'] = $user;
+
+
                         header('location: ' . ROOT . '/home');
                     }
                 }

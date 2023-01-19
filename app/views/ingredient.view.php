@@ -32,7 +32,7 @@ class IngredientView
                     </span> <?php if ($data->saison == "") {
                                 echo "Disponible tout le temps";
                             } else {
-                                echo $data->saison == "";
+                                echo $data->saison;
                             }
 
                             ?></p>

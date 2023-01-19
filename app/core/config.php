@@ -10,6 +10,7 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 	define('DBDRIVER', '');
 
 	define('ROOT', 'http://localhost/Projet_Final/public');
+	define('PROJECT_ROOT', 'http://localhost/Projet_Final');
 } else {
 	/** database config **/
 	define('DBNAME', 'tdw_php');

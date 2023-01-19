@@ -16,5 +16,6 @@ class IngredientModel
         'nom',
         'description',
         'image',
+        "saison"
     ];
 }

@@ -3,18 +3,75 @@ require_once "shared/mainLayout.php";
 require_once "shared/main.php";
 class UserDashboardView
 {
+    private $data;
+    public function __construct($data)
+    {
+
+        $this->data = $data;
+    }
     public function display()
     {
-        $main = new MainLayout();
-        function content()
-        {
 
+        $main = new MainLayout();
+        function content($data)
+        {
+            function userNotationCard($recipe, $note)
+            {
 ?>
+                <div class="notation-card">
+
+                    <img src=<?php echo $recipe->image ?> alt="recipe image">
+                    <div class="recipe-card-content">
+                        <h3>
+                            <?php
+                            echo $recipe->titre
+                            ?>
+                        </h3>
+
+                    </div>
+                    <div class="notation">
+                        <div class="stars display-only">
+
+                            <?php
+                            $i = 0;
+                            for ($i; $i < $note->note; $i++) {
+                                echo '<i class="fas fa-star checked"></i>';
+                            }
+                            if ($i < 5) {
+                                for ($i; $i < 5; $i++) {
+                                    echo '<i class="fas fa-star"></i>';
+                                }
+                            }
+                            ?>
+
+                        </div>
+                    </div>
+
+                    <a href=<?php echo ROOT . '/recipe/' . $recipe->id ?> target="_blank" rel="noopener noreferrer">
+                        <input class="primary-button" type="button" value="Lire la suite">
+                    </a>
+                </div>
+
+
+
+            <?php
+
+            }
+
+            ?>
             <?php
 
             if (isset($_SESSION["user"])) {
             ?>
                 <div class="user-profile-page">
+                    <div class="create-recipe-button">
+
+                        <a href="<?php echo ROOT . "/creerRecette" ?>">
+                            <div class="secondary-button">
+                                <p>Contribuer</p>
+                            </div>
+                        </a>
+                    </div>
 
                     <h1>
                         <?php echo "Bonjour " . $_SESSION["user"]->nom . " !"; ?>
@@ -44,7 +101,16 @@ class UserDashboardView
                             </div>
 
                             <div class="slider slider-container">
-                                //add preferd
+                                <?php
+                                $m = new Main;
+                                foreach ($data["recettesPrefere"] as $recipe) {
+
+                                    $m->RecipeCard($recipe->titre, $recipe->description, $recipe->image, $recipe->id);
+                                }
+                                ?>
+
+
+
 
                                 <div class="control-prev-btn">
                                     <i class="fas fa-arrow-left"></i>
@@ -66,7 +132,15 @@ class UserDashboardView
                             </div>
 
                             <div class="slider slider-container">
-                                //add content
+
+
+                                <?php
+                                $m = new Main;
+                                foreach ($data["recetteCree"] as $recipe) {
+
+                                    $m->RecipeCard($recipe->titre, $recipe->description, $recipe->image, $recipe->id);
+                                }
+                                ?>
 
                                 <div class="control-prev-btn">
                                     <i class="fas fa-arrow-left"></i>
@@ -88,7 +162,13 @@ class UserDashboardView
                             </div>
 
                             <div class="slider slider-container">
-                                //add content
+
+                                <?php
+                                foreach ($data["notation"] as $note) {
+                                    $recipe = $note->recette;
+                                    userNotationCard($recipe, $note);
+                                }
+                                ?>
 
                                 <div class="control-prev-btn">
                                     <i class="fas fa-arrow-left"></i>
@@ -114,10 +194,12 @@ class UserDashboardView
 
 <?php
         };
+        $pass = $this->data;
 
-        $main->displayLayout("Tableau de bord", function () {
+
+        $main->displayLayout("Tableau de bord", function () use ($pass) {
             return
-                content();
+                content($pass);
         });
     }
 }
