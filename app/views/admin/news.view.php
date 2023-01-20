@@ -21,7 +21,7 @@ class NewsView
                 <div class="recipes-page">
                     <div class="recipes-page__header">
                         <h2 class="recipes-page__title">Gestion des news</h2>
-                        <a href="http://localhost/Projet_Final/admin/news/add" class="recipes-page__add">
+                        <a href="<?php echo ADMINROOT ?>/news/add" class="recipes-page__add">
 
                             <i class="fa-solid fa-plus"></i>
                         </a>
@@ -42,12 +42,12 @@ class NewsView
                                 echo "<td><img class='table-image' src='" . $r->image . "' alt=''></td>";
                                 echo "<td>" . $r->titre . "</td>";
 
-                                echo "<td><a class='recipe-card__action' href='http://localhost/Projet_Final/admin/news/visualize/" . $r->id . "'><i class='fa-solid fa-eye'></i></a></td>";
+                                echo "<td><a class='recipe-card__action' href='" . ADMINROOT . "/news/visualize/" . $r->id . "'><i class='fa-solid fa-eye'></i></a></td>";
 
-                                echo "<td><a class='recipe-card__action' href='http://localhost/Projet_Final/admin/news/edit/" . $r->id . "'><i class='fa-solid fa-edit'></i></a></td>";
+                                echo "<td><a class='recipe-card__action' href='<?php echo ADMINROOT ?>/news/edit/" . $r->id . "'><i class='fa-solid fa-edit'></i></a></td>";
                                 echo "<td>
 
-                                <form action='http://localhost/Projet_Final/admin/news/delete' method='post'>
+                                <form action='" . ADMINROOT . "/news/delete' method='post'>
                                 <input type='hidden' name='id' value='" . $r->id . "'>
                                 <button class='recipe-card__action' type='submit'><i class='fa-solid fa-trash'></i></button>
                                 </form>

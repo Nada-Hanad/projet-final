@@ -1,0 +1,2 @@
+Notes:
+- Le fichier de configuration est dans le dossier /app/core, veuillez changer le PROJECT_ROOT et le nom de la bdd.

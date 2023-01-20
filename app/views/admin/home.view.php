@@ -23,7 +23,7 @@ class HomeView
                 <?php
                 if (!isset($_SESSION['admin'])) {
                 ?>
-                    <form action="http://localhost/Projet_Final/admin/home/authAdmin" name="adminLogin" class="admin-form" method="post">
+                    <form action="<?php echo ADMINROOT ?>/home/authAdmin" name="adminLogin" class="admin-form" method="post">
                         <label>
                             Username
                             <input name="username" type="text" placeholder="Username...">

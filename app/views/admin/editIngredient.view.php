@@ -21,7 +21,7 @@ class EditIngredientView
 
             <div class="add-recipe-page">
                 <h2 class="add-recipe-page__title">Modifier Ingredient</h2>
-                <form action="http://localhost/Projet_Final/admin/nutrition/editingredient" name="addNews" class="add-recipe-form" method="post" enctype="multipart/form-data" style="width: 500px; height:500px">
+                <form action="<?php echo ADMINROOT ?>/nutrition/editingredient" name="addNews" class="add-recipe-form" method="post" enctype="multipart/form-data" style="width: 500px; height:500px">
                     <input type="hidden" name="id" value="<?php echo $data->id; ?>">
 
                     <div class="form-section">

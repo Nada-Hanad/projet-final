@@ -119,7 +119,7 @@ class IdeeRecetteView
         $pass = $this->data;
 
 
-        $main->displayLayout("Tableau de bord", function () use ($pass) {
+        $main->displayLayout("Idée de recette", function () use ($pass) {
             return
                 content($pass);
         });

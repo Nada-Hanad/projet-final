@@ -10,7 +10,7 @@ class MainLayout extends Main
         $model = new ParamsModel();
         $params = $model->findAll();
 
-        $mainColor =  $params[0]->valeur;
+        $mainColor =  $params[1]->valeur;
 
 
         $this->Head($title, $mainColor);

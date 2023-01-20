@@ -49,9 +49,9 @@ class UsersView
                                     echo "<td>En attente</td>";
                                 }
 
-                                echo "<td><a class='recipe-card__action' href='http://localhost/Projet_Final/admin/userDashboard/" . $r->id . "'><i class='fa-solid fa-user'></i></a></td>";
+                                echo "<td><a class='recipe-card__action' href='" . ADMINROOT . "/userDashboard/" . $r->id . "'><i class='fa-solid fa-user'></i></a></td>";
                                 echo "<td>
-                                <form action='http://localhost/Projet_Final/admin/users/validate' method='post'>
+                                <form action='" . ADMINROOT . "/users/validate' method='post'>
                                 <input type='hidden' name='id' value='" . $r->id . "'>
                                 <button class='recipe-card__action' type='submit'><i class='fa-solid fa-check-double'></i></button>
                                 </form>
@@ -60,7 +60,7 @@ class UsersView
 
                                 echo "<td>
 
-                                <form action='http://localhost/Projet_Final/admin/users/delete' method='post'>
+                                <form action='" . ADMINROOT . "/users/delete' method='post'>
                                 <input type='hidden' name='id' value='" . $r->id . "'>
                                 <button class='recipe-card__action' type='submit'><i class='fa-solid fa-trash'></i></button>
                                 </form>

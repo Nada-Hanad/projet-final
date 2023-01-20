@@ -20,7 +20,7 @@ class AddRecipeView
 
             <div class="add-recipe-page">
                 <h2 class="add-recipe-page__title">Ajouter une recette</h2>
-                <form action="http://localhost/Projet_Final/admin/recipes/addRecipe" name="addRecipe" class="add-recipe-form" method="post" enctype="multipart/form-data">
+                <form action="<?php echo ADMINROOT ?>/recipes/addRecipe" name="addRecipe" class="add-recipe-form" method="post" enctype="multipart/form-data">
 
                     <div class="form-section">
                         <h3 class="form-section__title">Information recette</h3>

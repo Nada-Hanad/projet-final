@@ -310,7 +310,7 @@ function content($catT, $list)
                         <div class="recipe-card-content">
                             <h2>${recipe.titre}</h2>
                             <p>${recipe.description}</p>
-                            <a href="http://localhost:8080/ProjetWeb/recipes/${recipe.id}">Voir la recette</a>
+                            <a href="http://localhost/Projet-Final/recipes/${recipe.id}">Voir la recette</a>
                         </div>
                         `;
                         newsContainer.appendChild(card);

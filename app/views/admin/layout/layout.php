@@ -12,7 +12,7 @@ class AdminLayout
             <meta name="viewport" content="width=device-width, initial-scale=1.0">
             <meta http-equiv="pragma" content="no cache" />
             <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css" integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-            <link rel="stylesheet" href="<?php echo "http://localhost/Projet_Final/admin" ?>/assets/css/style.css">
+            <link rel="stylesheet" href="<?php echo  ADMINROOT ?>/assets/css/style.css">
             <link rel="stylesheet" href="<?php echo ROOT ?>/assets/css/style.css">
             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.3/jquery.min.js" integrity="sha512-STof4xm1wgkfm7heWqFJVn58Hm3EtS31XFaagaa8VMReCXAkQnJZ+jEy8PCC/iT18dFy95WcExNHFTqLyp72eQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
             <style>
@@ -30,34 +30,34 @@ class AdminLayout
         <nav>
             <ul>
                 <li>
-                    <a href="http://localhost/Projet_Final/admin/recipes">
+                    <a href="<?php echo ADMINROOT ?>/recipes">
                         Recettes
                     </a>
                 </li>
                 <li>
-                    <a href="http://localhost/Projet_Final/admin/news">
+                    <a href="<?php echo ADMINROOT ?>/news">
                         News
                     </a>
                 </li>
                 <li>
-                    <a href="http://localhost/Projet_Final/admin/users">
+                    <a href="<?php echo ADMINROOT ?>/users">
                         Utilisateurs
                     </a>
                 </li>
                 <li>
-                    <a href="http://localhost/Projet_Final/admin/nutrition">
+                    <a href="<?php echo ADMINROOT ?>/nutrition">
                         Nutrition
                     </a>
                 </li>
                 <li>
-                    <a href="http://localhost/Projet_Final/admin/params">
+                    <a href="<?php echo ADMINROOT ?>/params">
                         Paramètres
                     </a>
                 </li>
                 <li>
                     <?php
                     if (isset($_SESSION['admin'])) {
-                        echo '<a href="http://localhost/Projet_Final/admin/home/logout">
+                        echo '<a href="<?php echo ADMINROOT ?>/home/logout">
                 <i class="fa-solid fa-arrow-right-from-bracket logout-icon"></i>
                 </a>';
                     }

@@ -36,7 +36,7 @@ class ParamsView
                             foreach ($data["params"] as  $r) {
                             ?>
                                 <tr>
-                                    <form action="http://localhost/Projet_Final/admin/params/edit" method="post">
+                                    <form action="<?php echo ADMINROOT ?>/params/edit" method="post">
                                         <input type='hidden' name='id' value='<?php echo $r->id ?>'>
 
                                         <td>
@@ -76,7 +76,7 @@ class ParamsView
                             foreach ($data["diaporama"] as  $r) {
                             ?>
                                 <tr>
-                                    <form action="http://localhost/Projet_Final/admin/params/editDiapo" method="post">
+                                    <form action="<?php echo ADMINROOT ?>/params/editDiapo" method="post">
                                         <input type='hidden' name='id' value='<?php echo $r->id ?>'>
 
 
@@ -88,7 +88,7 @@ class ParamsView
 
                                         <td><button class='recipe-card__action' type='submit'><i class='fa-solid fa-edit'></i></button></td>
                                     </form>
-                                    <form action="http://localhost/Projet_Final/admin/params/deleteDiapo" method="post">
+                                    <form action="<?php echo ADMINROOT ?>/params/deleteDiapo" method="post">
                                         <input type='hidden' name='id' value='<?php echo $r->id ?>'>
 
                                         <td><button class='recipe-card__action' type='submit'><i class='fa-solid fa-trash'></i></button></td>
@@ -104,7 +104,7 @@ class ParamsView
 
 
                         </table>
-                        <a href="http://localhost/Projet_Final/admin/params/addDiapo">
+                        <a href="<?php echo ADMINROOT ?>/params/addDiapo">
                             <button class="primary-button">Ajouter un diapo</button>
                         </a>
 

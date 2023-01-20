@@ -20,7 +20,7 @@ class AddIngredientView
 
             <div class="add-recipe-page">
                 <h2 class="add-recipe-page__title">Ajouter un ingredient</h2>
-                <form action="http://localhost/Projet_Final/admin/nutrition/addIngredient" name="addNews" class="add-recipe-form" method="post" enctype="multipart/form-data" style="width: 500px; height:400px">
+                <form action="<?php echo ADMINROOT ?>/nutrition/addIngredient" name="addNews" class="add-recipe-form" method="post" enctype="multipart/form-data" style="width: 500px; height:400px">
 
                     <div class="form-section">
                         <h3 class="form-section__title">Information</h3>
@@ -79,7 +79,7 @@ class AddIngredientView
         $pass = $this->data;
 
 
-        $main->displayLayout("Ajouter recette", function () use ($pass) {
+        $main->displayLayout("Ajouter ingredient", function () use ($pass) {
             return
                 content($pass);
         });

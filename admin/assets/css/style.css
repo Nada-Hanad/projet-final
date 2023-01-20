@@ -501,3 +501,17 @@ table td input {
 th {
   width: 200px;
 }
+#filter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px;
+  border-bottom: 1px solid rgb(201, 201, 201);
+  border: none;
+  position: absolute;
+  top: 96px;
+  left: 32px;
+  box-shadow: 0 0 16px 0 rgba(198, 198, 198, 0.8);
+  background-color: white;
+  border-radius: 8px;
+}

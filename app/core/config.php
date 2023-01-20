@@ -9,8 +9,9 @@ if ($_SERVER['SERVER_NAME'] == 'localhost') {
 	define('DBPASS', 'root');
 	define('DBDRIVER', '');
 
-	define('ROOT', 'http://localhost/Projet_Final/public');
 	define('PROJECT_ROOT', 'http://localhost/Projet_Final');
+	define('ROOT', PROJECT_ROOT . '/public');
+	define('ADMINROOT', PROJECT_ROOT . '/admin');
 } else {
 	/** database config **/
 	define('DBNAME', 'tdw_php');

@@ -21,7 +21,7 @@ class EditNewsView
 
             <div class="add-recipe-page">
                 <h2 class="add-recipe-page__title">Ajouter une actualité</h2>
-                <form action="http://localhost/Projet_Final/admin/news/editNews" name="addNews" class="add-recipe-form" method="post" enctype="multipart/form-data" style="width: 500px; height:400px">
+                <form action="<?php echo ADMINROOT ?>/news/editNews" name="addNews" class="add-recipe-form" method="post" enctype="multipart/form-data" style="width: 500px; height:400px">
                     <input type="hidden" name="id" value="<?php echo $data->id; ?>">
 
                     <div class="form-section">
@@ -75,7 +75,7 @@ class EditNewsView
         $pass = $this->data;
 
 
-        $main->displayLayout("Ajouter recette", function () use ($pass) {
+        $main->displayLayout("Modifier news", function () use ($pass) {
             return
                 content($pass);
         });

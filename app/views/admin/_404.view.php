@@ -5,9 +5,11 @@ class _404View
     public function display()
     {
 ?>
-        <h1>
-            Not found
-        </h1>
+        <div class="_404">
+            <h1>Oops cette information n'existe pas</h1>
+            <p>La page que vous recherchez n'existe pas</p>
+
+        </div>
 <?php
     }
 }

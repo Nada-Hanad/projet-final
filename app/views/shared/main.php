@@ -135,13 +135,16 @@ class Main
                 <div class="content">
                     <ul class="nav-ul">
                         <li>
-                            <a href="http://" target="_blank" rel="noopener noreferrer">Acceuil</a>
+                            <a href="<?php echo ROOT ?>/home">Acceuil</a>
                         </li>
                         <li>
-                            <a href="http://" target="_blank" rel="noopener noreferrer">News</a>
+                            <a href="<?php echo ROOT ?>/news" rel="noopener noreferrer">News</a>
                         </li>
                         <li>
-                            <a href="http://" target="_blank" rel="noopener noreferrer">Idée de recettes</a>
+                            <a href="<?php echo ROOT ?>/ideeRecette">Idée de recettes</a>
+                        </li>
+                        <li>
+                            <a href="<?php echo ROOT ?>/nutrition">Nutrition</a>
                         </li>
                         <li class="menu">
                             <div class="header">
@@ -155,17 +158,17 @@ class Main
                             <div class="menu-content">
                                 <ul>
                                     <li>
-                                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                                        <a href="<?php echo ROOT ?>/category/healthy">
                                             Healthy
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                                        <a href="<?php echo ROOT ?>/category/fêtes">
                                             Fêtes
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="http://" target="_blank" rel="noopener noreferrer">
+                                        <a href="<?php echo ROOT ?>/category/saison">
                                             Saison
                                         </a>
 
@@ -174,7 +177,7 @@ class Main
                             </div>
                         </li>
                         <li>
-                            <a href="http://" target="_blank" rel="noopener noreferrer">Contact</a>
+                            <a href="<?php echo ROOT ?>/contact">Contact</a>
                         </li>
                     </ul>
                 </div>

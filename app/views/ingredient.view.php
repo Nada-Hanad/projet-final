@@ -51,7 +51,7 @@ class IngredientView
         };
         $pass = $this->data;
 
-        $main->displayLayout("ingredient", function () use ($pass) {
+        $main->displayLayout($this->data->nom, function () use ($pass) {
             return
                 content($pass);
         });

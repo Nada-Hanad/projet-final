@@ -209,7 +209,7 @@ class AuthenticationView
 
         $main = new MainLayout();
         $d = $this->data;
-        $main->displayLayout("Acceuil", function () use ($d) {
+        $main->displayLayout("Authentification", function () use ($d) {
             return
                 content($d);
         });
